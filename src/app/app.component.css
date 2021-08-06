@@ -1,0 +1,14 @@
+.row1 ul {
+    width: 90%;
+    float: left;
+}
+
+.row1 ul li{
+    list-style: none;
+    display: inline;
+    padding-left: 10px;
+}
+
+.mgt{
+    margin-top: 20px;
+}
