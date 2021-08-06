@@ -200,6 +200,10 @@ export class AppComponent {
 
   confirmSeats(): void {
     // confirm my seats as booked
+    if(this.chooseSeats.length != this.userSeats){
+      return alert('Please Select '+this.userSeats+' seat(s).');
+    }
+
     this.bookedSeats = this.bookedSeats.concat(this.chooseSeats);
     this.chooseSeats = [];
     this.highlightSeats = [];
