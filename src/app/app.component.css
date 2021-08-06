@@ -12,3 +12,7 @@
 .mgt{
     margin-top: 20px;
 }
+
+.errorMsg{
+    color:#f00;
+}

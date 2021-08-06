@@ -6,23 +6,23 @@
         <div class="row">
           <div class="col-md-8">
             <label>Seats</label>
-            <select
-              class="form-control"
+            <input
+              type="number"
               name="userSeats"
               [(ngModel)]="userSeats"
-              (change)="setUserSeats()"
-            >
-              <option value="0">Please Select Seats</option>
-              <option
-                *ngFor="let s of this.maxBookSeatsCollection"
-                value="{{ s }}"
-              >
-                {{ s }}
-              </option>
-            </select>
+              class="form-control"
+              placeholder="Please enter no. of seats"
+            />
+            <input
+              type="submit"
+              class="btn btn-danger"
+              value="Submit"
+              (click)="confirmUserSeats()"
+            />
+            <p *ngIf="msg" class="errorMsg">{{ msg }}</p>
           </div>
         </div>
-        <div class="row1 mgt" *ngIf="this.userSeats > 0">
+        <div class="row1 mgt" *ngIf="this.userSeats > 0 && submit">
           <ul *ngFor="let s of this.seats; let row = index">
             <li *ngFor="let c of this.seats[row]; let col = index">
               <a
@@ -35,22 +35,13 @@
                   src="../assets/img/bseat.png"
                   *ngIf="
                     !checkSeatIsBooked(this.seats[row][col]) &&
-                    !mySeats(this.seats[row][col]) &&
-                    !checkHighlightSeats(this.seats[row][col])
+                    !mySeats(this.seats[row][col])
                   "
                 />
                 <img
                   alt="Free Seat"
                   src="../assets/img/fseat.png"
                   *ngIf="mySeats(this.seats[row][col])"
-                />
-                <img
-                  alt="Free Seat"
-                  src="../assets/img/hseat.png"
-                  *ngIf="
-                    checkHighlightSeats(this.seats[row][col]) &&
-                    !mySeats(this.seats[row][col])
-                  "
                 />
                 <img
                   alt="Free Seat"
@@ -63,7 +54,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6" *ngIf="this.userSeats > 0">
+    <div class="col-md-6" *ngIf="this.userSeats > 0 && submit">
       <div class="seat_plan">
         <table class="table">
           <thead>
