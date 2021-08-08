@@ -22,13 +22,12 @@
             <p *ngIf="msg" class="errorMsg">{{ msg }}</p>
           </div>
         </div>
-        <div class="row1 mgt" *ngIf="this.userSeats > 0 && submit">
+        <div class="row1 mgt">
           <ul *ngFor="let s of this.seats; let row = index">
             <li *ngFor="let c of this.seats[row]; let col = index">
               <a
                 id="s{{ this.seats[row][col] }}"
                 title="Seat No. {{ this.seats[row][col] }}"
-                (click)="selectSeat(this.seats[row][col])"
               >
                 <img
                   alt="Free Seat"
@@ -46,41 +45,15 @@
                 <img
                   alt="Free Seat"
                   src="../assets/img/bookseat.png"
-                  *ngIf="checkSeatIsBooked(this.seats[row][col])"
+                  *ngIf="
+                    checkSeatIsBooked(this.seats[row][col]) &&
+                    !mySeats(this.seats[row][col])
+                  "
                 />
               </a>
             </li>
           </ul>
         </div>
-      </div>
-    </div>
-    <div class="col-md-6" *ngIf="this.userSeats > 0 && submit">
-      <div class="seat_plan">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>S.No.</th>
-              <th>Seat No.</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let s of this.chooseSeats; let sn = index">
-              <td>{{ sn + 1 }}</td>
-              <td>{{ s }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="total bg-default">
-        <b>Total Seats: {{ this.chooseSeats.length }}</b>
-      </div>
-      <div class="row">
-        <button
-          class="btn mt-3 ml-3 btn-primary btn-sm btn-block"
-          (click)="confirmSeats()"
-        >
-          Confirm
-        </button>
       </div>
     </div>
   </div>
